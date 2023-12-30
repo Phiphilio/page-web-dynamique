@@ -3,6 +3,7 @@ console.log("ça marche");
 const pieces = await reponse.json();
 /**apparemment contrôle + shift + r réactualise le site et égalemet le cache du navigateur */
 
+
 for (let i = 0; i < pieces.length; ++i) {
     const sectionFiches = document.querySelector(".fiches");
     // création d'une balise dédiée à une pièce automobile
@@ -38,3 +39,7 @@ for (let i = 0; i < pieces.length; ++i) {
     sectionFiches.appendChild(pieceElement);
     
 };
+const boutonTrier = document.quereySelector(".btn-trier");
+boutonTrier.addEventListener("click", function(){
+
+});
