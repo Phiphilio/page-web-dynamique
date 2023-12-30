@@ -1,5 +1,4 @@
 const reponse = await fetch("pieces-autos.json");
-console.log("ça marche");
 const pieces = await reponse.json();
 /**apparemment contrôle + shift + r réactualise le site et égalemet le cache du navigateur */
 
@@ -37,9 +36,19 @@ for (let i = 0; i < pieces.length; ++i) {
     pieceElement.appendChild(stockElement);
 
     sectionFiches.appendChild(pieceElement);
-    
-};
-const boutonTrier = document.quereySelector(".btn-trier");
-boutonTrier.addEventListener("click", function(){
 
+};
+const boutonTrier = document.querySelector(".btn-trier");
+boutonTrier.addEventListener("click", function () {
+    pieces.sort(function (a, b) {
+        return a.prix - b.prix;
+    });
+    /**la methode sort est utilisée pour trier un tableau. Elle s'attend à recevoir une valeur de la fonction qu'elle contient. la fonction elle va faire le calcul suivant
+     * deuxième paramètre (b) - premier paramètre (a)
+     * si le résultat est positif alors le deuxième parammètre (b) est plus grand que le premier(a) et sera donc placé avant, 
+     * si le résultat est négatif alors le premier paramètre(a) est plus grand que le second(b), il sera placé avant.
+     * si le résultat est égal à 0, il n'y a pas de changements. 
+     */
+    console.log(pieces);
 });
+
