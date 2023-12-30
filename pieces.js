@@ -40,7 +40,8 @@ for (let i = 0; i < pieces.length; ++i) {
 };
 const boutonTrier = document.querySelector(".btn-trier");
 boutonTrier.addEventListener("click", function () {
-    pieces.sort(function (a, b) {
+    const piecesOrdonnees = Array.from(pieces);
+    piecesOrdonnees.sort(function (a, b) {
         return a.prix - b.prix;
     });
     /**la methode sort est utilisée pour trier un tableau. Elle s'attend à recevoir une valeur de la fonction qu'elle contient. la fonction elle va faire le calcul suivant
@@ -49,6 +50,14 @@ boutonTrier.addEventListener("click", function () {
      * si le résultat est négatif alors le premier paramètre(a) est plus grand que le second(b), il sera placé avant.
      * si le résultat est égal à 0, il n'y a pas de changements. 
      */
-    console.log(pieces);
+    console.log(piecesOrdonnees);
 });
 
+const boutonFiltrer = document.querySelector(".btn-filtrer");
+boutonFiltrer.addEventListener("click", () => {
+
+    const piecesFiltres = pieces.filter(function (piece) {
+        return piece.prix <= 35;
+    })
+    console.log(piecesFiltres);
+});
