@@ -28,10 +28,13 @@ for (let i = 0; i < pieces.length; ++i) {
     const stockElement = document.createElement("p");
     stockElement.innerText = pieces[i].disponibilite ? "en stock" : "Rupture de stock";
 
-    sectionFiches.appendChild(imageElement);
-    sectionFiches.appendChild(nomElement);
-    sectionFiches.appendChild(prixElement);
-    sectionFiches.appendChild(categorieElement);
-    sectionFiches.appendChild(descriptionElement);
-    sectionFiches.appendChild(stockElement);
+    pieceElement.appendChild(imageElement);
+    pieceElement.appendChild(nomElement);
+    pieceElement.appendChild(prixElement);
+    pieceElement.appendChild(categorieElement);
+    pieceElement.appendChild(descriptionElement);
+    pieceElement.appendChild(stockElement);
+
+    sectionFiches.appendChild(pieceElement);
+    
 };
