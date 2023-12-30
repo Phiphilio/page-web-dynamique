@@ -1,52 +1,37 @@
 const reponse = await fetch("pieces-autos.json");
 console.log("ça marche");
 const pieces = await reponse.json();
+/**apparemment contrôle + shift + r réactualise le site et égalemet le cache du navigateur */
 
-const article = pieces[0];
-const imageElement = document.createElement("img");
-imageElement.src = article.image;
+for (let i = 0; i < pieces.length; ++i) {
+    const sectionFiches = document.querySelector(".fiches");
+    // création d'une balise dédiée à une pièce automobile
+    const pieceElement = document.createElement("article");
+    //création de l'élément img
+    const imageElement = document.createElement("img");
+    //on accède à l'indice i de la liste pieces pour configurer la source de l'image
+    imageElement.src = pieces[i].image;
+    //création de l'élément
+    const nomElement = document.createElement("h2");
+    nomElement.innerText = pieces[i].nom;
 
-/*l'élément img qui a été créé et stocké dans imageElement, 
-on spécifie que pour l'attribut src qui se trouve dans la balise(<img src=""> on lui donne la valeur qui se trouve dans article.image.
-cette valeur doit correspondre à l'url de l'image*/
+    const prixElement = document.createElement("p");
+    prixElement.innerText = `prix ${pieces[i].prix} €`;
 
-const nomElement = document.createElement("h2");
-nomElement.innerText = article.nom; /*même principe sauf que innerText se réfère à la zone de texte (<h2> texte</h2>) */
+    const categorieElement = document.createElement("p");
+    categorieElement.innerText = pieces[i].categorie;
 
-const categorieElement = document.createElement("p");
-categorieElement.innerText = article.categorie;
+    const descriptionElement = document.createElement("p");
+    descriptionElement.innerText = pieces[i].description ?? "Pas de description pour le moment.";
 
-/**
- * l'opérateur ternaire se présente comme ça 
- * expression à tester ? valeur si vrai : valeur si faux.
- */
 
-const prixElement = document.createElement("p");
-prixElement.innerText = `prix ${article.prix} € (${article.prix < 35 ? "€" : "€€€"})`
-document.body.appendChild(prixElement);
+    const stockElement = document.createElement("p");
+    stockElement.innerText = pieces[i].disponibilite ? "en stock" : "Rupture de stock";
 
-/**
- * l'opérateur nullish se présente comme ça:
- * expression à tester ?? valeur de subtitution
- */
-const descriptionElement = document.createElement("p");
-descriptionElement.innerText = article.description ?? "Pas de description pour le moment.";
-document.body.appendChild(descriptionElement);
-
-const stockElement = document.createElement("p");
-stockElement.innerText = article.disponibilite ? "en stock" : "Rupture de stock"
-document.body.appendChild(stockElement)
-
-/**pour accueillir tous ces nouveaux éléments, il leur faudra des parents. la structure DOM de notre code html
- * nous oblige à procéder de la sorte.
- * pour pouvoir le faire, nous allons utiliser la method appendChild qui permet justement de créer des "enfants"
- */
-
-const sectionFiches = document.querySelector(".fiches");
-sectionFiches.appendChild(imageElement);
-sectionFiches.appendChild(nomElement);
-sectionFiches.appendChild(prixElement);
-sectionFiches.appendChild(categorieElement);
-sectionFiches.appendChild(descriptionElement);
-sectionFiches.appendChild(stockElement);
-
+    sectionFiches.appendChild(imageElement);
+    sectionFiches.appendChild(nomElement);
+    sectionFiches.appendChild(prixElement);
+    sectionFiches.appendChild(categorieElement);
+    sectionFiches.appendChild(descriptionElement);
+    sectionFiches.appendChild(stockElement);
+};
