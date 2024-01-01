@@ -79,4 +79,31 @@ for (let i = pieces.length - 1; i >= 0; i--) {
         noms.splice(i, 1);
     }
 }
-console.log(noms);
+
+
+const abordablesElements = document.createElement("ul");
+
+for (let i = 0; i < noms.length; ++i) {
+
+    const nomElement = document.createElement("li");
+    nomElement.innerText = noms[i];
+    abordablesElements.appendChild(nomElement);
+}
+const cardAbord = document.querySelector(".abordables");
+cardAbord.appendChild(abordablesElements);
+
+for (let i = pieces.length - 1; i >= 0; i--) {
+    if (pieces[i].disponibilite === false) {
+        pieces.splice(i, 1);
+    }
+}
+const listeDispo = document.createElement("ul");
+
+for (let i = 0; i<pieces.length; i++){
+    const dispo = document.createElement("li")
+    dispo.innerText = pieces[i].nom;
+    listeDispo.appendChild(dispo)
+}
+
+const disponible = document.querySelector(".disponibles");
+disponible.appendChild(listeDispo);
