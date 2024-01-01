@@ -61,3 +61,22 @@ boutonFiltrer.addEventListener("click", () => {
     })
     console.log(piecesFiltres);
 });
+
+const noms = pieces.map(pieces => pieces.nom);
+/**la methode map s'applique sur un tableau d'origine et permet de créer un nouveau tableau contenant les éléments du tableau d'origine qui eux ont étés modifiés par une fonction prise en paramètre par map
+ * 
+ * fonctionnement étape par étape : 
+ * La méthode map() est appelée sur un tableau d'origine.
+ * Elle prend en argument une fonction qui sera appliquée à chaque élément du tableau.
+ * Cette fonction de transformation définit comment chaque élément du tableau d'origine doit être modifié.
+ * La méthode map() crée un nouveau tableau contenant les résultats de l'application de la fonction à chaque élément.
+ * Le tableau d'origine reste inchangé.
+  */
+
+for (let i = pieces.length - 1; i >= 0; i--) {
+
+    if (pieces[i].prix > 35) {
+        noms.splice(i, 1);
+    }
+}
+console.log(noms);
