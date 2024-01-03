@@ -1,6 +1,4 @@
-const reponse = await fetch("pieces-autos.json");
-const pieces = await reponse.json();
-/**apparemment contrôle + shift + r réactualise le site et égalemet le cache du navigateur */
+const pieces = await fetch("pieces-autos.json").then(pieces=>pieces.json());
 
 
 for (let i = 0; i < pieces.length; ++i) {
