@@ -229,3 +229,79 @@ console.log("Prix en dollars :", pricesInDollars);
 console.log("Prix en euros avec map :", pricesInEuros);
 
 /**************************************************/
+/**
+ * Cheat Sheet : Array.from
+ *
+ * Description :
+ * La méthode Array.from crée un nouvel objet Array à partir d'un objet
+ * semblable à un tableau (array-like) ou d'une structure itérable.
+ *
+ * Syntaxe :
+ * Array.from(iterable[, mapFunction[, thisArg]])
+ *
+ * Paramètres :
+ * - iterable : Objet semblable à un tableau ou structure itérable.
+ * - mapFunction (facultatif) : Fonction à appeler sur chaque élément de l'itérable.
+ * - thisArg (facultatif) : Valeur à utiliser comme this lors de l'exécution de la mapFunction.
+ *
+ * Exemples :
+ */
+
+// Exemple 1 : Créer un tableau à partir d'une chaîne de caractères
+const iterableString = 'hello';
+const newArrayFromStr = Array.from(iterableString);
+console.log(newArrayFromStr); // ['h', 'e', 'l', 'l', 'o']
+
+// Exemple 2 : Utilisation d'une fonction de mappage
+const iterableNumbers = [1, 2, 3];
+const newArrayWithMap = Array.from(iterableNumbers, x => x * 2);
+console.log(newArrayWithMap); // [2, 4, 6]
+
+// Exemple 3 : Créer un tableau à partir d'un objet Set
+const iterableSet = new Set([4, 5, 6]);
+const newArrayFromSet = Array.from(iterableSet);
+console.log(newArrayFromSet); // [4, 5, 6]
+
+// Note : Pour Internet Explorer, vous pouvez avoir besoin de polyfills.
+
+/**
+ * Cheat Sheet : Array.filter
+ *
+ * Description :
+ * La méthode Array.filter crée un nouveau tableau avec tous les éléments
+ * qui passent le test implémenté par la fonction fournie.
+ *
+ * Syntaxe :
+ * newArray = arr.filter(callback(element[, index[, array]])[, thisArg])
+ *
+ * Paramètres :
+ * - callback : Fonction qui est utilisée pour tester chaque élément du tableau.
+ * - element : Élément en cours de traitement dans le tableau.
+ * - index (facultatif) : Index de l'élément en cours de traitement.
+ * - array (facultatif) : Tableau sur lequel filter a été appelé.
+ * - thisArg (facultatif) : Valeur à utiliser comme this lors de l'exécution de la callback.
+ *
+ * Exemples :
+ */
+
+// Exemple 1 : Filtrer les nombres pairs
+const numbers = [1, 2, 3, 4, 5, 6];
+const evenNumbers = numbers.filter(num => num % 2 === 0);
+console.log(evenNumbers); // [2, 4, 6]
+
+// Exemple 2 : Filtrer les chaînes de caractères ayant plus de 5 caractères
+const words = ['apple', 'banana', 'grape', 'kiwi'];
+const longWords = words.filter(word => word.length > 5);
+console.log(longWords); // ['banana']
+
+// Exemple 3 : Filtrer les objets avec une propriété spécifique
+const products = [
+    { name: 'Laptop', price: 1000 },
+    { name: 'Phone', price: 500 },
+    { name: 'Tablet', price: 300 }
+];
+const affordableProducts = products.filter(product => product.price < 600);
+console.log(affordableProducts);
+// [{ name: 'Phone', price: 500 }, { name: 'Tablet', price: 300 }]
+
+// Note : Pour Internet Explorer, vous pouvez avoir besoin de polyfills.
