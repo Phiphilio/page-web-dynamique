@@ -27,9 +27,11 @@ export function ajoutListenerEnvoyerAvis() {
         event.preventDefault();
 
         const avis = {
+            //parseInt sert à convertir une chaine de caractère en un nombre entier
             pieceId: parseInt(event.target.querySelector("[name=piece-id]").value),
             utilisateur: event.target.querySelector("[name=utilisateur]").value,
-            commentaire: event.target.querySelector("[name=commentaire]").value
+            commentaire: event.target.querySelector("[name=commentaire]").value,
+            nbEtoiles: parseInt(event.target.querySelector("[name=nbEtoiles]").value)
         }
         // cet objet doit être transformé en chaine de caractère au format json
         const chargeUtile = JSON.stringify(avis);
