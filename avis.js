@@ -9,12 +9,37 @@ export function ajooutListenerAvis() {
             const pieceElement = event.target.parentElement;
 
             const avisElement = document.createElement("p");
-        for (let i = 0; i < avis.length; i++) {
-            avisElement.innerHtml += `${avis[i].utilisateur} : <br> ${avis[i].commentaire} <br>;`
-          }
-          pieceElement.appendChild(avisElement);
-         }
+            for (let i = 0; i < avis.length; i++) {
+                avisElement.innerHTML += `${avis[i].utilisateur} : <br> ${avis[i].commentaire} <br>;`
+            }
+            pieceElement.appendChild(avisElement);
+        }
         )
-};
+    };
 
+}
+export function ajoutListenerEnvoyerAvis() {
+    const btnSoumettre = document.querySelector(".formulaire-avis");
+
+    btnSoumettre.addEventListener("submit", function (event) {
+
+        // empeche la page de se charger automatiquement après qu'un formulaire soit validé
+        event.preventDefault();
+
+        const avis = {
+            pieceId: parseInt(event.target.querySelector("[name=piece-id]").value),
+            utilisateur: event.target.querySelector("[name=utilisateur]").value,
+            commentaire: event.target.querySelector("[name=commentaire]").value
+        }
+        // cet objet doit être transformé en chaine de caractère au format json
+        const chargeUtile = JSON.stringify(avis);
+
+        // maintenant je oeux utiliser la fonction fetch pour soumettre les informations nécéssaires
+        fetch("http://localhost:8081/avis", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: chargeUtile
+        })
+
+    })
 }

@@ -1,5 +1,6 @@
+import { ajooutListenerAvis, ajoutListenerEnvoyerAvis } from "./avis.js";
 const pieces = await fetch(" http://localhost:8081/pieces").then(pieces => pieces.json());
-import { ajooutListenerAvis } from "./avis.js";
+
 
 //fonction qui génère toute la page web
 function genererPieces(pieces) {
@@ -46,7 +47,11 @@ function genererPieces(pieces) {
         document.body.appendChild(sectionFiches);
     };
     console.log("ça marche");
+    //on appelle la fonction pour ajouter ke listener au formulaire
     ajooutListenerAvis();
+
+    //on appelle la fonction pour ajouter ke listener au formulaire
+    ajoutListenerEnvoyerAvis();
 };
 
 //premier affichage de la page 
