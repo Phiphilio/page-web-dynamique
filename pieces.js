@@ -1,5 +1,5 @@
-const pieces = await fetch("pieces-autos.json").then(pieces => pieces.json());
-import {ajooutListenerAvis} from "./avis.js";
+const pieces = await fetch(" http://localhost:8081/pieces").then(pieces => pieces.json());
+import { ajooutListenerAvis } from "./avis.js";
 
 //fonction qui génère toute la page web
 function genererPieces(pieces) {
@@ -30,8 +30,9 @@ function genererPieces(pieces) {
         stockElement.innerText = pieces[i].disponibilite ? "en stock" : "Rupture de stock";
 
         const avisBouton = document.createElement("button");
-        avisBouton.dataset.id= pieces[i].id;
+        avisBouton.dataset.id = pieces[i].id;
         avisBouton.innerText = "afficher les avis";
+
 
         pieceElement.appendChild(imageElement);
         pieceElement.appendChild(nomElement);
