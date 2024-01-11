@@ -1,5 +1,23 @@
 import { ajooutListenerAvis, ajoutListenerEnvoyerAvis } from "./avis.js";
-const pieces = await fetch(" http://localhost:8081/pieces").then(pieces => pieces.json());
+
+//getItem permet de récupérer une valeur dans le localStorage 
+let pieces = window.localStorage.getItem("pieces");
+
+if (pieces === null) {
+    //récupération des pieces depuis l'api
+    pieces = await fetch(" http://localhost:8081/pieces").then(pieces => pieces.json());
+
+    //transformation des pieces en JSON
+    const valeurPieces = JSON.stringify(pieces);
+
+    //setItem permet de stocker une valeur dans le localstorage
+    window.localStorage.setItem("pieces", valeurPieces);
+
+} else {
+    //désérialisation de la chaine obtenue pour obtenir le format en JSON
+    pieces = JSON.parse(pieces);
+}
+
 
 
 //fonction qui génère toute la page web
@@ -156,49 +174,9 @@ inputPrixMax.addEventListener('input', function () {
     document.querySelector(".fiches").innerHTML = "";
     genererPieces(piecesFiltrees);
 })
-/*
-const noms = pieces.map(pieces => pieces.nom);
-/**la methode map s'applique sur un tableau d'origine et permet de créer un nouveau tableau contenant les éléments du tableau d'origine qui eux ont étés modifiés par une fonction prise en paramètre par map
- * 
- * fonctionnement étape par étape : 
- * La méthode map() est appelée sur un tableau d'origine.
- * Elle prend en argument une fonction qui sera appliquée à chaque élément du tableau.
- * Cette fonction de transformation définit comment chaque élément du tableau d'origine doit être modifié.
- * La méthode map() crée un nouveau tableau contenant les résultats de l'application de la fonction à chaque élément.
- * Le tableau d'origine reste inchangé.
-  */
-/*
-for (let i = pieces.length - 1; i >= 0; i--) {
 
-    if (pieces[i].prix > 35) {
-        noms.splice(i, 1);
-    }
-}
-
-
-const abordablesElements = document.createElement("ul");
-
-for (let i = 0; i < noms.length; ++i) {
-
-    const nomElement = document.createElement("li");
-    nomElement.innerText = noms[i];
-    abordablesElements.appendChild(nomElement);
-}
-const cardAbord = document.querySelector(".abordables");
-cardAbord.appendChild(abordablesElements);
-
-for (let i = pieces.length - 1; i >= 0; i--) {
-    if (pieces[i].disponibilite === false) {
-        pieces.splice(i, 1);
-    }
-}
-const listeDispo = document.createElement("ul");
-
-for (let i = 0; i < pieces.length; i++) {
-    const dispo = document.createElement("li")
-    dispo.innerText = pieces[i].nom;
-    listeDispo.appendChild(dispo)
-}
-
-const disponible = document.querySelector(".disponibles");
-disponible.appendChild(listeDispo);*/
+//ajout d'un bouton pour supprimer ce qui est contenu dans le local storage
+const boutonMettreAJour = document.querySelector(".btn-maj");
+boutonMettreAJour.addEventListener("click", function () {
+    window.localStorage.removeItem("pieces");
+});

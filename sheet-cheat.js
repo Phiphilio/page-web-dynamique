@@ -305,3 +305,16 @@ console.log(affordableProducts);
 // [{ name: 'Phone', price: 500 }, { name: 'Tablet', price: 300 }]
 
 // Note : Pour Internet Explorer, vous pouvez avoir besoin de polyfills.
+
+
+//difference entre la fonction JSONstringify et .json
+
+// Utilisation de JSON.stringify() pour convertir un objet en chaîne JSON (on parle bien d'objet javascript, le premier concept que j'ai vu dans mon apprentissage)
+const obj = { name: "John", age: 30, city: "New York" };
+const jsonString = JSON.stringify(obj);
+console.log(jsonString); // {"name":"John","age":30,"city":"New York"}
+
+// Utilisation de fetch pour récupérer des données JSON depuis un serveur
+fetch('http://example.com/pieces')
+  .then(response => response.json()) // .json() pour extraire le contenu JSON de la réponse
+  .then(data => console.log(data)); // "data" contient l'objet JavaScript correspondant aux données JSON
